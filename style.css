@@ -1,0 +1,82 @@
+body {
+  background-color: #444;
+  color: #8d8;
+}
+
+main {
+  display: flex;
+  gap: 1em;
+}
+
+#board {
+ position: relative;
+ min-width: 70vw;
+ min-height: 30vw;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+#info {
+  border: 1px solid #aaa;
+  width: 100%;
+  padding: 1.5em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#balls {
+  display: flex;
+}
+
+.ball img {
+  width: 100px;
+  height: 100px;
+}
+
+#cannon {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 50px)
+}
+
+.animatefromcannon {
+  animation: animatefromcannon 1s ease-in 1;
+}
+
+@keyframes animatefromcannon {
+  from {
+    transform: translate(var(--delta-x), var(--delta-y));
+  }
+  to {
+    transform: translate(0,0);
+  }
+}
+
+.expand {
+  animation: expand .2s ease-in .8s 1 backwards;
+}
+
+@keyframes expand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+.remove {
+  animation: implode .7s ease-in 1 forwards;
+}
+
+@keyframes implode {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 0;
+  }
+}
