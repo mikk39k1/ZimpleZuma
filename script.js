@@ -114,7 +114,7 @@ function addBallToChain(ball) {
 
 function checkAndRemoveBalls() {
   const balls = document.querySelectorAll("#balls .ball");
-  let count = 1; // Start counting from 1 as we compare with the next ball
+  let count = 1; // Start counting from 1
   let lastBallType = balls.length > 0 ? balls[0].dataset.balltype : null;
   let ballsToRemove = [];
 
@@ -123,7 +123,7 @@ function checkAndRemoveBalls() {
     if (currentBallType === lastBallType) {
       count++;
       ballsToRemove.push(balls[i - 1]); // Add the previous ball to the removal list
-      if (i === balls.length - 1 && count >= 3) { // Check if the last ball also forms a group
+      if (i === balls.length - 1 && count >= 3) {
         ballsToRemove.push(balls[i]); // Add the last ball to the removal list
       }
     } else {
@@ -131,16 +131,15 @@ function checkAndRemoveBalls() {
         // If a sequence ends and has 3 or more balls, add the last of the sequence to remove list
         ballsToRemove.push(balls[i - 1]);
         removeBallsFromChain(ballsToRemove); // Remove all balls in the sequence
-        ballsToRemove = []; // Reset the removal list
+        ballsToRemove = []; 
       }
       count = 1; // Reset count for the new sequence
-      ballsToRemove = []; // Start new sequence
+      ballsToRemove = []; 
     }
     lastBallType = currentBallType; // Update the lastBallType for the next iteration
   }
 
   if (ballsToRemove.length >= 3) {
-    // In case the last sequence has 3 or more balls
     removeBallsFromChain(ballsToRemove);
   }
 }
